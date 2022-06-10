@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,59 +23,6 @@ namespace TuDien
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-
-        private string ip;
-        private int port;
-        private string username;
-        private string password;
-        private string database;
-
-        public string Ip 
-        { 
-            get => ip;
-            set
-            {
-                ip = value;
-                this.txtIP.Text = ip;
-            } 
-        }
-        public int Port 
-        { 
-            get => port;
-            set 
-            { 
-                port = value;
-                this.txtPort.Text = port.ToString();
-            } 
-        }
-        public string Username 
-        { 
-            get => username;
-            set
-            {
-                username = value;
-                this.txtUser.Text = username;
-            } 
-        }
-        public string Password 
-        { 
-            get => password;
-            set
-            {
-                password = value;
-                this.txtPass.Text = password;
-            }
-        }
-        public string Database 
-        { 
-            get => database;
-            set
-            {
-                database = value;
-                this.txtDatabase.Text = database;
-            } 
-        }
-
         public Setting()
         {
             InitializeComponent();
@@ -108,6 +56,16 @@ namespace TuDien
             this.txtPass.Text = "";
             this.txtDatabase.Text = "";
         }
+
+        private void loadConnectionString()
+        {
+            string[] a = File.ReadAllLines("dic.txt");
+            this.txtIP.Text = a[0];
+            this.txtPort.Text = a[1];
+            this.txtUser.Text = a[2];
+            this.txtPass.Text = a[3];
+            this.txtDatabase.Text = a[4];
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             string ip = txtIP.Text;
@@ -117,29 +75,29 @@ namespace TuDien
             string database = txtDatabase.Text;
 
             string noidung = ip + "\r\n" + port + "\r\n" + user + "\r\n" + pass + "\r\n" + database;
-
+            MySqlConnection conn = Connection.getDBConnection(ip, Convert.ToInt32(port), database, user, pass);
+            try
+            {
+                conn.Open();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Kết nối thất bại");
+                loadConnectionString();
+                return;
+            }
             File.WriteAllText("dic.txt", noidung);
             resetText();
             MessageBox.Show("Cập nhật thành công");
 
-            string[] a = File.ReadAllLines("dic.txt");
-            this.txtIP.Text = a[0];
-            this.txtPort.Text = a[1];
-            this.txtUser.Text = a[2];
-            this.txtPass.Text = a[3];
-            this.txtDatabase.Text = a[4];
+            loadConnectionString();
         }
 
         private void Setting_Load(object sender, EventArgs e)
         {
             if (File.Exists("dic.txt"))
             {
-                string[] a = File.ReadAllLines("dic.txt");
-                this.txtIP.Text = a[0];
-                this.txtPort.Text = a[1];
-                this.txtUser.Text = a[2];
-                this.txtPass.Text = a[3];
-                this.txtDatabase.Text = a[4];
+                loadConnectionString();
             }
         }
     }

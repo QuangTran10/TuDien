@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.cmbOption = new System.Windows.Forms.ComboBox();
             this.btnFind = new System.Windows.Forms.Button();
             this.notify = new System.Windows.Forms.NotifyIcon(this.components);
             this.contentMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -52,26 +51,13 @@
             this.panelContainer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // cmbOption
-            // 
-            this.cmbOption.DisplayMember = "VI-JA";
-            this.cmbOption.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cmbOption.FormattingEnabled = true;
-            this.cmbOption.Items.AddRange(new object[] {
-            "VI-JA",
-            "JA-VI"});
-            this.cmbOption.Location = new System.Drawing.Point(120, 164);
-            this.cmbOption.Name = "cmbOption";
-            this.cmbOption.Size = new System.Drawing.Size(121, 28);
-            this.cmbOption.TabIndex = 3;
-            // 
             // btnFind
             // 
             this.btnFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(219)))), ((int)(((byte)(227)))));
             this.btnFind.Image = global::TuDien.Properties.Resources.search;
-            this.btnFind.Location = new System.Drawing.Point(642, 162);
+            this.btnFind.Location = new System.Drawing.Point(594, 161);
             this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(61, 31);
+            this.btnFind.Size = new System.Drawing.Size(77, 42);
             this.btnFind.TabIndex = 4;
             this.btnFind.UseVisualStyleBackColor = false;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
@@ -92,7 +78,7 @@
             this.càiĐặtToolStripMenuItem,
             this.hướngDẫnSửDụngToolStripMenuItem});
             this.contentMenu.Name = "contentMenu";
-            this.contentMenu.Size = new System.Drawing.Size(181, 114);
+            this.contentMenu.Size = new System.Drawing.Size(181, 92);
             // 
             // mởToolStripMenuItem
             // 
@@ -195,6 +181,7 @@
             this.panelContainer.BackColor = System.Drawing.Color.White;
             this.panelContainer.Controls.Add(this.btnSetting);
             this.panelContainer.Controls.Add(this.txtSearch);
+            this.panelContainer.Controls.Add(this.btnFind);
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(0, 0);
             this.panelContainer.Name = "panelContainer";
@@ -207,7 +194,7 @@
             this.btnSetting.FlatAppearance.BorderSize = 0;
             this.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetting.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSetting.ForeColor = System.Drawing.Color.Black;
+            this.btnSetting.ForeColor = System.Drawing.Color.Transparent;
             this.btnSetting.Image = global::TuDien.Properties.Resources.settings1;
             this.btnSetting.Location = new System.Drawing.Point(837, 318);
             this.btnSetting.Name = "btnSetting";
@@ -219,10 +206,10 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearch.Location = new System.Drawing.Point(247, 163);
+            this.txtSearch.Location = new System.Drawing.Point(183, 162);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(389, 29);
+            this.txtSearch.Size = new System.Drawing.Size(405, 41);
             this.txtSearch.TabIndex = 0;
             // 
             // Main
@@ -232,8 +219,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(885, 361);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnFind);
-            this.Controls.Add(this.cmbOption);
             this.Controls.Add(this.panelContainer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
@@ -252,7 +237,6 @@
         }
 
         #endregion
-        private ComboBox cmbOption;
         private Button btnFind;
         private NotifyIcon notify;
         private ContextMenuStrip contentMenu;

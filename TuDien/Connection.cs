@@ -13,7 +13,6 @@ namespace TuDien
         {
             String connString = "Server=" + host + ";Database=" + database
                 + ";Port=" + port + ";User Id=" + username + ";Password=" + password+ ";charset=utf8;";
-
             MySqlConnection conn = new MySqlConnection(connString);
 
             return conn;

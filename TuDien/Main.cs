@@ -8,7 +8,6 @@ namespace TuDien
 {
     public partial class Main : Form
     {
-        private int borderRadius = 20;
         private int borderSize = 2;
         private Color borderColor = Color.FromArgb(128, 128, 255);
 
@@ -18,8 +17,6 @@ namespace TuDien
         private IKeyboardMouseEvents m_Events;
         string data;
         ControlData ctrl;
-
-        int option = 0;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -49,31 +46,39 @@ namespace TuDien
             this.panel1.BackColor = borderColor;
             this.BackColor = borderColor;
 
-            cmbOption.SelectedIndex = 0;
             manage = new ManageDictionary();
 
             conn = ConnectDB.Connect();
 
             ctrl = new ControlData(m_Events, data, txtSearch);
         }
+        public void resetConnection()
+        {
+            conn = ConnectDB.Connect();
+        }
         private void btnFind_Click(object sender, EventArgs e)
         {
-            int i = cmbOption.SelectedIndex;
             string content = txtSearch.Text;
             ArrayList re = new ArrayList();
-            conn.Open();
-            re = manage.findWord(conn, content);
-            
-            if(re.Count == 0)
+            try
             {
-                Message mess = new Message("Không tìm thấy kết quả");
-                mess.Show();
+                conn.Open();
+                re = manage.findWord(conn, content);
+            
+                if(re.Count == 0)
+                {
+                    Message mess = new Message("Không tìm thấy kết quả");
+                    mess.Show();
+                }
+                else{
+                    Notification noti = new Notification(re, content);
+                    noti.Show();
+                }
             }
-            else{
-                Notification noti = new Notification(re, content);
-                noti.Show();
+            catch (Exception)
+            {
+                MessageBox.Show("Kết nối thất bại");
             }
-
             conn.Close();
         }
         
@@ -122,9 +127,8 @@ namespace TuDien
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-            int id = 0;     // The id of the hotkey. 
+            int id = 0; 
             RegisterHotKey(this.Handle, id, (int)KeyModifier.Shift, Keys.F.GetHashCode());
-            RegisterHotKey(this.Handle, 1, (int)KeyModifier.Shift, Keys.Q.GetHashCode());
         }
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -133,9 +137,8 @@ namespace TuDien
         }
         private void Main_Load(object sender, EventArgs e)
         {
-            int id = 0;     // The id of the hotkey. 
+            int id = 0;
             RegisterHotKey(this.Handle, id, (int)KeyModifier.Shift, Keys.F.GetHashCode());
-            RegisterHotKey(this.Handle, 1, (int)KeyModifier.Shift, Keys.Q.GetHashCode());
             ctrl.SubscribeGlobal();
         }
 
@@ -153,44 +156,29 @@ namespace TuDien
                     return;
                 if (id == 0)
                 {
-                    conn.Open();
-                    ArrayList re;
-                    if (this.cmbOption.SelectedIndex == 0)
+                    try
                     {
-                        re = manage.findWord(conn, keyword);
-                    }
-                    else
-                    {
-                        re = manage.findWord(conn, keyword);
-                    }
-                    
-                    if (re.Count == 0)
-                    {
-                        Message mess = new Message("Không tìm thấy kết quả");
-                        mess.Show();
-                    }
-                    else
-                    {
-                        Notification noti = new Notification(re, keyword);
-                        noti.Show();
-                    }
-                
-                    conn.Close();
-                }else if (id == 1)
-                {
-                    MessageBox.Show("Chuyển đổi kiểu tra từ");
-                    if (this.cmbOption.SelectedIndex == 0)
-                    {
-                        this.cmbOption.SelectedIndex = 1;
+                        conn.Open();
+                        ArrayList re;
+                        re = manage.findWord(conn, keyword); 
 
+                        if (re.Count == 0)
+                        {
+                            Message mess = new Message("Không tìm thấy kết quả");
+                            mess.Show();
+                        }
+                        else
+                        {
+                            Notification noti = new Notification(re, keyword);
+                            noti.Show();
+                        }
                     }
-                    else
+                    catch (Exception)
                     {
-                        this.cmbOption.SelectedIndex = 0;
+                        MessageBox.Show("Kết nối thất bại");
                     }
-                    
+                    conn.Close();
                 }
-                
             }
         }
 

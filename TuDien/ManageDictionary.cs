@@ -38,7 +38,8 @@ namespace TuDien
                     + "or tm_english_translate like '%" + findwords
                     + "%' or tm_example like '%" + findwords
                     + "%' or tm_japanese_hiragana like '%" + findwords 
-                    + "%' or tm_japanese_translate like '%" + findwords + "%'";
+                    + "%' or tm_japanese_translate like '%" + findwords + "%'"
+                    + "order by tm_japanese_translate DESC";
 
             MySqlCommand command = new MySqlCommand();
 
