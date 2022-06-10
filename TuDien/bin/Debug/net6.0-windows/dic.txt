@@ -1,5 +1,5 @@
-4Hw30YQMnVyvqc18rAbXrQ==
-0
-V9Y7EU/lbCU=
-srd9pFqV8Yo=
-NvpDge593C4=
+127.0.0.1
+3306
+root
+
+testdb

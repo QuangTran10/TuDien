@@ -110,11 +110,11 @@ namespace TuDien
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string ip = Md5.Encrypt(txtIP.Text);
-            string port = Md5.Encrypt(txtPort.Text);
-            string user = Md5.Encrypt(txtUser.Text);
-            string pass = Md5.Encrypt(txtPass.Text);
-            string database = Md5.Encrypt(txtDatabase.Text);
+            string ip = txtIP.Text;
+            string port = txtPort.Text;
+            string user = txtUser.Text;
+            string pass = txtPass.Text;
+            string database = txtDatabase.Text;
 
             string noidung = ip + "\r\n" + port + "\r\n" + user + "\r\n" + pass + "\r\n" + database;
 
@@ -123,11 +123,11 @@ namespace TuDien
             MessageBox.Show("Cập nhật thành công");
 
             string[] a = File.ReadAllLines("dic.txt");
-            this.txtIP.Text = Md5.Decrypt(a[0]);
-            this.txtPort.Text = Md5.Decrypt(a[1]);
-            this.txtUser.Text = Md5.Decrypt(a[2]);
-            this.txtPass.Text = Md5.Decrypt(a[3]);
-            this.txtDatabase.Text = Md5.Decrypt(a[4]);
+            this.txtIP.Text = a[0];
+            this.txtPort.Text = a[1];
+            this.txtUser.Text = a[2];
+            this.txtPass.Text = a[3];
+            this.txtDatabase.Text = a[4];
         }
 
         private void Setting_Load(object sender, EventArgs e)
@@ -135,11 +135,11 @@ namespace TuDien
             if (File.Exists("dic.txt"))
             {
                 string[] a = File.ReadAllLines("dic.txt");
-                this.txtIP.Text = Md5.Decrypt(a[0]);
-                this.txtPort.Text = Md5.Decrypt(a[1]);
-                this.txtUser.Text = Md5.Decrypt(a[2]);
-                this.txtPass.Text = Md5.Decrypt(a[3]);
-                this.txtDatabase.Text = Md5.Decrypt(a[4]);
+                this.txtIP.Text = a[0];
+                this.txtPort.Text = a[1];
+                this.txtUser.Text = a[2];
+                this.txtPass.Text = a[3];
+                this.txtDatabase.Text = a[4];
             }
         }
     }

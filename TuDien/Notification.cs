@@ -19,6 +19,14 @@ namespace TuDien
         private Color borderColor = Color.FromArgb(128, 128, 255);
         private ArrayList dic;
 
+        public string convert(string data)
+        {
+            var windows1252 = Encoding.GetEncoding(1252);
+            var utf8Bytes = windows1252.GetBytes(data);
+            var correct = Encoding.UTF8.GetString(utf8Bytes);
+            return correct;
+        }
+
         public Notification()
         {
             InitializeComponent();
@@ -31,7 +39,7 @@ namespace TuDien
         public Notification(ArrayList a, string keywords) : this()
         {
             this.lblKey.Text = keywords;
-            var listItems = new ListItem[100];
+            var listItems = new ListItem[a.Count+1];
             flowLayoutPanel1.Controls.Clear();
             int i = 0;
             dic = a;
@@ -39,12 +47,21 @@ namespace TuDien
             string replacekey = "<mark>" + keywords + "</mark>";
             foreach (Dictionary item in dic)
             {
+
                 listItems[i] = new ListItem();
-                string japanese_trans = item.Tm_japanese_translate.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
-                string japan_hiragana = item.Tm_japanese_hiragana.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
-                string vietnamese = item.Tm_vietnamese_tranlate.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
-                string english = item.Tm_english_tranlate.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
-                string example = item.Tm_example.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+
+                string japanese_trans = convert(item.Tm_japanese_translate);
+                string japan_hiragana = convert(item.Tm_japanese_hiragana);
+                string vietnamese = convert(item.Tm_vietnamese_tranlate);
+                string english = convert(item.Tm_english_tranlate);
+                string example = convert(item.Tm_example);
+
+                japanese_trans = japanese_trans.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+                japan_hiragana = japan_hiragana.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+                vietnamese = vietnamese.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+                english = english.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+                example = example.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+
                 listItems[i].Content = "<html>" +
                 "<style> mark{background-color:#CE96F8;} p{padding : 0;margin: 0;line-height:20px;font-size:12px;text-align:justify }</style>" +
                 "<body>" +

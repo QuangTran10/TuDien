@@ -62,13 +62,8 @@ namespace TuDien
             string content = txtSearch.Text;
             ArrayList re = new ArrayList();
             conn.Open();
-            if (i == 0)
-            {
-                re = manage.findWord(conn, content, 0);
-            }else if (i==1)
-            {
-                re = manage.findWord(conn, content, 1);
-            }
+            re = manage.findWord(conn, content);
+            
             if(re.Count == 0)
             {
                 Message mess = new Message("Không tìm thấy kết quả");
@@ -162,11 +157,11 @@ namespace TuDien
                     ArrayList re;
                     if (this.cmbOption.SelectedIndex == 0)
                     {
-                        re = manage.findWord(conn, keyword,0);
+                        re = manage.findWord(conn, keyword);
                     }
                     else
                     {
-                        re = manage.findWord(conn, keyword, 1);
+                        re = manage.findWord(conn, keyword);
                     }
                     
                     if (re.Count == 0)

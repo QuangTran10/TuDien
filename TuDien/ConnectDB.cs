@@ -14,15 +14,12 @@ namespace TuDien
             MySqlConnection conn = null;
             string ip="", user="", pass = "", database = "";
             int port=3306;
-            if (File.Exists("dic.txt"))
-            {
-                string[] db = File.ReadAllLines("dic.txt");
-                ip = Md5.Decrypt(db[0]);
-                port =  Convert.ToInt32(Md5.Decrypt(db[1]));
-                user = Md5.Decrypt(db[2]);
-                pass = Md5.Decrypt(db[3]);
-                database = Md5.Decrypt(db[4]);
-            }
+            string[] db = File.ReadAllLines("dic.txt");
+            ip = db[0];
+            port =  Convert.ToInt32(db[1]);
+            user = db[2];
+            pass = db[3];
+            database = db[4];
             
             return conn = Connection.getDBConnection(ip, port, database, user, pass);
         }
