@@ -19,7 +19,6 @@ namespace TuDien
             var correct = Encoding.UTF8.GetString(utf8Bytes);
             return correct;
         }
-
         public string Decode(string data)
         {
             byte[] utf8Text = Encoding.UTF8.GetBytes(data);
@@ -27,7 +26,6 @@ namespace TuDien
             string result = cp1252.GetString(utf8Text);
             return result;
         }
-
         public ArrayList findWord(MySqlConnection conn, string findwords)
         {
             ArrayList listwords = new ArrayList();

@@ -13,7 +13,6 @@ namespace TuDien
 {
     public partial class UserManual : Form
     {
-        private int borderRadius = 20;
         private int borderSize = 2;
         private Color borderColor = Color.FromArgb(128, 128, 255);
 

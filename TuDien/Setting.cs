@@ -15,7 +15,6 @@ namespace TuDien
 {
     public partial class Setting : Form
     {
-        private int borderRadius = 20;
         private int borderSize = 2;
         private Color borderColor = Color.FromArgb(128, 128, 255);
 
@@ -75,17 +74,7 @@ namespace TuDien
             string database = txtDatabase.Text;
 
             string noidung = ip + "\r\n" + port + "\r\n" + user + "\r\n" + pass + "\r\n" + database;
-            MySqlConnection conn = Connection.getDBConnection(ip, Convert.ToInt32(port), database, user, pass);
-            try
-            {
-                conn.Open();
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Kết nối thất bại");
-                loadConnectionString();
-                return;
-            }
+            
             File.WriteAllText("dic.txt", noidung);
             resetText();
             MessageBox.Show("Cập nhật thành công");
