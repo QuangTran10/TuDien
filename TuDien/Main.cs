@@ -196,13 +196,20 @@ namespace TuDien
         private void btnSetting_Click(object sender, EventArgs e)
         {
             Setting s = new Setting();
+            s.Button_Clicked += new EventHandler(btnReset_Click);
             s.Show();
         }
 
         private void càiĐặtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Setting s = new Setting();
+            s.Button_Clicked += new EventHandler(btnReset_Click);
             s.Show();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            resetConnection();
         }
     }
 }

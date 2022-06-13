@@ -43,6 +43,7 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
             this.btnSetting = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.contentMenu.SuspendLayout();
@@ -179,6 +180,7 @@
             // panelContainer
             // 
             this.panelContainer.BackColor = System.Drawing.Color.White;
+            this.panelContainer.Controls.Add(this.btnReset);
             this.panelContainer.Controls.Add(this.btnSetting);
             this.panelContainer.Controls.Add(this.txtSearch);
             this.panelContainer.Controls.Add(this.btnFind);
@@ -187,6 +189,18 @@
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(885, 361);
             this.panelContainer.TabIndex = 7;
+            // 
+            // btnReset
+            // 
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnReset.Location = new System.Drawing.Point(828, 274);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(57, 38);
+            this.btnReset.TabIndex = 5;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSetting
             // 
@@ -252,5 +266,6 @@
         private ToolStripMenuItem hướngDẫnSửDụngToolStripMenuItem;
         private TextBox txtSearch;
         private Button btnSetting;
+        private Button btnReset;
     }
 }

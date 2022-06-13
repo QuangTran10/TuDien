@@ -22,6 +22,9 @@ namespace TuDien
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        public event EventHandler Button_Clicked;
+
         public Setting()
         {
             InitializeComponent();
@@ -77,9 +80,15 @@ namespace TuDien
             
             File.WriteAllText("dic.txt", noidung);
             resetText();
+            if (this.Button_Clicked != null)
+                this.Button_Clicked(sender, e);
+
             MessageBox.Show("Cập nhật thành công");
 
             loadConnectionString();
+
+            
+
         }
 
         private void Setting_Load(object sender, EventArgs e)
