@@ -43,6 +43,7 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.btnResetHotKeys = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSetting = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -56,9 +57,9 @@
             // 
             this.btnFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(219)))), ((int)(((byte)(227)))));
             this.btnFind.Image = global::TuDien.Properties.Resources.search;
-            this.btnFind.Location = new System.Drawing.Point(594, 161);
+            this.btnFind.Location = new System.Drawing.Point(594, 164);
             this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(77, 42);
+            this.btnFind.Size = new System.Drawing.Size(77, 36);
             this.btnFind.TabIndex = 4;
             this.btnFind.UseVisualStyleBackColor = false;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
@@ -67,7 +68,7 @@
             // 
             this.notify.ContextMenuStrip = this.contentMenu;
             this.notify.Icon = ((System.Drawing.Icon)(resources.GetObject("notify.Icon")));
-            this.notify.Text = "Nhật - Việt | Dictionary";
+            this.notify.Text = "IT Dictionary";
             this.notify.Visible = true;
             this.notify.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notify_MouseDoubleClick);
             // 
@@ -102,7 +103,7 @@
             this.càiĐặtToolStripMenuItem.Image = global::TuDien.Properties.Resources.gear;
             this.càiĐặtToolStripMenuItem.Name = "càiĐặtToolStripMenuItem";
             this.càiĐặtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.càiĐặtToolStripMenuItem.Text = "Cài Đặt";
+            this.càiĐặtToolStripMenuItem.Text = "Cấu hình database";
             this.càiĐặtToolStripMenuItem.Click += new System.EventHandler(this.càiĐặtToolStripMenuItem_Click);
             // 
             // hướngDẫnSửDụngToolStripMenuItem
@@ -145,7 +146,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(210, 30);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Nhật - Việt | Dictionary";
+            this.label1.Text = "IT Dictionary";
             // 
             // btnMinimize
             // 
@@ -180,6 +181,7 @@
             // panelContainer
             // 
             this.panelContainer.BackColor = System.Drawing.Color.White;
+            this.panelContainer.Controls.Add(this.btnResetHotKeys);
             this.panelContainer.Controls.Add(this.btnReset);
             this.panelContainer.Controls.Add(this.btnSetting);
             this.panelContainer.Controls.Add(this.txtSearch);
@@ -190,16 +192,29 @@
             this.panelContainer.Size = new System.Drawing.Size(885, 361);
             this.panelContainer.TabIndex = 7;
             // 
+            // btnResetHotKeys
+            // 
+            this.btnResetHotKeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetHotKeys.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnResetHotKeys.Location = new System.Drawing.Point(827, 229);
+            this.btnResetHotKeys.Name = "btnResetHotKeys";
+            this.btnResetHotKeys.Size = new System.Drawing.Size(55, 39);
+            this.btnResetHotKeys.TabIndex = 6;
+            this.btnResetHotKeys.Text = "button1";
+            this.btnResetHotKeys.UseVisualStyleBackColor = true;
+            this.btnResetHotKeys.Click += new System.EventHandler(this.btnResetHotKeys_Click);
+            // 
             // btnReset
             // 
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnReset.ForeColor = System.Drawing.SystemColors.Window;
             this.btnReset.Location = new System.Drawing.Point(828, 274);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(57, 38);
             this.btnReset.TabIndex = 5;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Visible = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSetting
@@ -220,10 +235,9 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearch.Location = new System.Drawing.Point(183, 162);
-            this.txtSearch.Multiline = true;
+            this.txtSearch.Location = new System.Drawing.Point(183, 168);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(405, 41);
+            this.txtSearch.Size = new System.Drawing.Size(405, 27);
             this.txtSearch.TabIndex = 0;
             // 
             // Main
@@ -267,5 +281,6 @@
         private TextBox txtSearch;
         private Button btnSetting;
         private Button btnReset;
+        private Button btnResetHotKeys;
     }
 }

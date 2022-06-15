@@ -59,16 +59,24 @@ namespace TuDien
                 japan_hiragana = japan_hiragana.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
                 vietnamese = vietnamese.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
                 english = english.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
-                example = example.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+                if(example == "" )
+                {
+                    example = "";
+                }
+                else
+                {
+                    example = "<br><b>Ví dụ:</b><br>" + example.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase).Replace("\n","<br>");
+                }
+
 
                 listItems[i].Content = "<html>" +
                 "<style> mark{background-color:#CE96F8;} p{padding : 0;margin: 0;line-height:20px;font-size:12px;text-align:justify }</style>" +
                 "<body>" +
-                "<p style='font-size: 8px; line-height:0'>" + japan_hiragana + "</p>" +
+                "<p style='font-size: 10px; line-height:0'>" + japan_hiragana + "</p>" +
                 "<p style= 'color:red; font-size:14px'>" + japanese_trans + "</p>" +
                 "<p>" + japan_hiragana + "</p>" +
                 "<p>" + vietnamese + "</p>" +
-                "<p>" + english + "<br><b>Ví dụ:</b><br>" + example + "</p></body></html>";
+                "<p>" + english + example + "</p></body></html>";
 
                 flowLayoutPanel1.Controls.Add(listItems[i]);
                 i++;

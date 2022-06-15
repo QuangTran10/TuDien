@@ -25,6 +25,8 @@ namespace TuDien
 
         public event EventHandler Button_Clicked;
 
+        public event EventHandler Button2_Clicked;
+
         public Setting()
         {
             InitializeComponent();
@@ -68,6 +70,41 @@ namespace TuDien
             this.txtPass.Text = a[3];
             this.txtDatabase.Text = a[4];
         }
+
+        private void loadHotKey()
+        {
+            if (File.Exists("hotkey.txt"))
+            {
+                string[] b = File.ReadAllLines("hotkey.txt");
+                string modi = "";
+                if (Convert.ToInt32(b[0]) == 1)
+                {
+                    this.rdAlt.Checked = true;
+                    modi = "Alt";
+                }else if (Convert.ToInt32(b[0]) == 2)
+                {
+                    this.rdCtrl.Checked = true;
+                    modi = "Ctrl";
+                }
+                else
+                {
+                    this.rdShift.Checked = true;
+                    modi = "Shift";
+                }
+                this.cmbKeys.SelectedIndex = Convert.ToInt32(b[2]);
+                string shortcut = modi + " + " + KeyItem.find(Convert.ToInt32(b[1]));
+                lblNotice.Text = shortcut;
+            }
+            else
+            {
+                string noidung = 4 + "\r\n" + 70 + "\r\n" + 66;
+
+                File.WriteAllText("hotkey.txt", noidung);
+                this.rdShift.Checked = true;
+                this.cmbKeys.SelectedIndex = 66;
+            }
+            
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             string ip = txtIP.Text;
@@ -86,9 +123,6 @@ namespace TuDien
             MessageBox.Show("Cập nhật thành công");
 
             loadConnectionString();
-
-            
-
         }
 
         private void Setting_Load(object sender, EventArgs e)
@@ -97,6 +131,43 @@ namespace TuDien
             {
                 loadConnectionString();
             }
+
+            cmbKeys.Items.Clear();
+            cmbKeys.DisplayMember = nameof(KeyItem.Name);
+            cmbKeys.ValueMember = nameof(KeyItem.KeyCode);
+            cmbKeys.DataSource = KeyItem.List;
+            loadHotKey();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            int modifier = 4; //Mac dinh la nut Shift
+            if (rdCtrl.Checked)
+            {
+                modifier = 2;
+            }
+            if (rdShift.Checked)
+            {
+                modifier = 4;
+            }
+            if (rdAlt.Checked)
+            {
+                modifier = 1;
+            }
+
+            int key=Keys.F.GetHashCode();
+
+            key = (int)cmbKeys.SelectedValue;
+
+            string noidung = modifier + "\r\n" + key + "\r\n" + cmbKeys.SelectedIndex;
+
+            File.WriteAllText("hotkey.txt", noidung);
+            loadHotKey();
+            MessageBox.Show("Cập nhật thành công");
+
+            if (this.Button2_Clicked != null)
+                this.Button2_Clicked(sender, e);
+
         }
     }
 }

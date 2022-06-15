@@ -60,13 +60,12 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Khi khởi động phần mềm sẽ có một icon ở system tray
 Có hai cách để tra cứu từ:
-- Quét khối từ cần tra, sau đó nhấn tổ hợp phím               . Từ cần tra sẽ được hiện lên hoặc báo lỗi không tìm thấy.
-- Nhấn đúp chuột vào icon ở system tray. Nhập từ cần tra và kết quả xuất hiện.
+- Quét khối từ cần tra, sau đó nhấn tổ hợp phím  Ctrl + F( mặc định) hoặc tổ hợp mà bạn muốn. Từ cần tra sẽ được hiện lên hoặc báo lỗi nếu không tìm thấy.
+- Nhấn đúp chuột vào icon ở system tray. Nhập từ cần tra hoặc quét khối , sau đó nhận vào nút tìm và kết quả xuất hiện.
 Phần mềm có hai loại tra từ:
-- Dịch từ Tiếng Việt sang Tiếng Nhật( Mặc định).
-- Dịch từ Tiếng Nhật sang Tiếng Việt. Để chuyển đổi nhấn                 .
-
-</value>
++ Tiếng Nhật sang Tiếng Việt.
++ Tiếng Việt sang Tiếng Nhật.
+Lưu ý: bạn có thể thay đổi phím tắt để dịch từ bằng cách vào Cấu hình database -&gt; Phím tắt.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

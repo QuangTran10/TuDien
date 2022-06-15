@@ -1,0 +1,60 @@
+編集可能な権限について記載します : Ghi ra quyền có thể edit
+権限に付与する : Cấp quyền
+権限一覧 : Danh sách quyền
+全権を持つ人。セルの式やフォーマットを変更することができる。
+Người có toàn quyền. Có thể thay đổi forrmat và công thức của cell
+トレーナーごと、ユーザーごとで画面内権限は変わりますが、トレーナーもユーザーもログインして使ってもらう形になります。
+Các quyền trên màn hình khác nhau tùy thuộc vào người huấn luyện và người dùng, nhưng cả người huấn luyện và người dùng sẽ phải đăng nhập để sử dụng.AQ列にとらわれずに、A3横1枚で印刷できるようであれば、結構です
+Không cần phải ràng buộc giới hạn bởi cột AQ, chỉ cần có thể in được trên khổ A3 chiều ngang là được
+管理画面でAテーブル削除条件を捕らわれる必要があると思います。
+Trong màn hình quản lý (admin) thì tôi nghĩ cần phải có ràng buôc điều kiện xóa trong bảng A.追加するファイル : Bổ sung các file
+基本サービス追加：thêm dv cơ bản
+加算追加：thêm dv bs
+特定サービス追加： thêm dv đặc biệt
+メイン画面で取り込み処理を追加 : Bổ sung xử lý import dữ liệu ở màn hình chính.
+この項目を追加しました。
+Bổ sung thêm nội dung này.「Web1」をクリックし詳細画面を見ることが出来ます。
+Click vào web1 để xem màn hình chi tiết.画面遷移図 :Sơ đồ chuyển màn hình (Screen transition diagram)
+未登録の場合は、Aページに遷移します。
+Trường hợp chưa đăng ký, thì chuyển đến trang A.
+単純にメッセージルームへ画面遷移するだけです。
+Đơn giản là chỉ di chuyển đến màn hình message room
+Aのトーク画面に遷移できない。
+Không thể chuyển qua màn hình talk của A được登録画面 : Màn hình đăng ký
+詳細画面 : Màn hình chi tiết
+汎用チャット画面: Màn hình chat mục đích chung.4.5=5,
+5.4=5
+
+この件に関して、四捨五入の問題だと思います。システム上、四捨五入の処理が一致しないところが散々あります。 必要であれば、まずこの画面を対応します。
+Liên quan đến vấn việc này thì tôi nghĩ là vấn đề của việc làm tròn số. Trên hệ thống thì những chỗ xử lí làm tròn số không thống nhất là có rất nhiều. Nếu mà cần thiết thì trước hết tôi sẽ đối ứng phần màn hình.画面が固まる:　máy bị treo
+画面が固まっていますのでちょっと待ってください。
+Máy tính đang treo, chờ chút nhé図１－１ : hình 1-1
+図解で説明してください。
+Vui lòng giải thích bằng hình ảnh minh hoạt
+画面遷移図 : Sơ đồ chuyển màn hình
+システム構成図: Sơ đồ cấu tạo hệ thống公開鍵を入力し、「確認画面へ進む」をクリック。
+Nhập khóa công khai và nhấp vào "Tiếp tục đến màn hình xác nhận"この画面の最上部へスクロールする
+Scroll đến phần trên của màn hình này
+この線より左はスクロールしない
+Từ phía trái của line này sẽ không scroll「pcとスマホ双方から閲覧でき、特にPC画面とスマホ画面で見た目が変わるもの」との認識でよろしいでしょうか？
+「Nó có thể được xem từ cả PC và điện thoại thông minh, và giao diện thay đổi đặc biệt là trên màn hình PC và màn hình điện thoại thông minh」tôi nhận thức vậy có không?コンバート画面の文言変更 : Thay đổi text của màn hình convert
+コンバート画面は以下の２か所から呼び出している : Mành hình convert được gọi ra từ 2 chỗ sau.キャプチャー動画はいつ頃いただけますでしょうか？
+Videp quay thì khi nào có thể gửi?
+
+頂いた画面キャプチャに関して、原因は不明ですが、たまに表示されるものであり、再度ログイン頂けば大丈夫かと思います。
+Về cái hình chụp màn hình mà bạn gửi, tôi không biết nguyên nhân do đâu nhưng thỉnh thoảng tôi cũng gặp, cứ login lại là OK đấy.更新をキャンセルし、機能トップ画面へ遷移
+Cancel việc cập nhật và chuyển về màn hình Top.
+自動的にキャンセル扱い？
+Xử lý tự động hủy không?登録画面のイメージです :  Minh họa màn hình đăng ký
+イメージとしては　：Hình dung như sau.
+イメージなのでこの通りにしなくてもいいです。
+Vì đây là minh họa nên không nhất thiết phải làm giống hệt.他の画面に切り変える：chuyển sang màn hình khác入力したデータを決定し、データベースへ書き込み、機能トップ画面へ遷移。
+Xác định 決定 dữ liệu đã nhập, nhập vào DB  và chuyển qua màn hình topログイン画面にリダイレクトする : Điều hướng đến màn hình login
+アクセスできた直後にhttps://www.abc.jp/にリダイレクトされました。
+Được điều hướng đến trang abc ngay sau khi có thể truy xuất.今後のメンテナンスのお見積もりもください。
+Vui lòng dự toán cho lần duy trì sau.
+メンテナンスモードへ移行　: Chuyển qua mode bảo trì.
+画面操作によりメンテナンスモードへ移行。
+Thao tác trên màn hình chuyển qua mode bảo trì.『完了』を押したらメイン画面に戻って取り込みを行う
+Sau khi người dùng nhấn nút [完了], quay trở về màn hình chính và xử lý import実績管理画面の画面右画面収録
+Ghi nhận màn hình

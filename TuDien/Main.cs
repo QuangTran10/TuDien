@@ -31,8 +31,7 @@ namespace TuDien
             None = 0,
             Alt = 1,
             Control = 2,
-            Shift = 4,
-            WinKey = 8
+            Shift = 4
         }
         public Main()
         {
@@ -46,6 +45,13 @@ namespace TuDien
             this.panel1.BackColor = borderColor;
             this.BackColor = borderColor;
 
+            if (File.Exists("hotkey.txt")==false)
+            {
+                string noidung = 4 + "\r\n" + 70 + "\r\n" + 66;
+
+                File.WriteAllText("hotkey.txt", noidung);
+            }
+
             manage = new ManageDictionary();
 
             conn = ConnectDB.Connect();
@@ -55,6 +61,25 @@ namespace TuDien
         public void resetConnection()
         {
             conn = ConnectDB.Connect();
+        }
+
+        public void resetHotKey()
+        {
+            UnregisterHotKey(this.Handle, 0);
+            string[] hot;
+            int modi, key;
+            if (File.Exists("hotkey.txt"))
+            {
+                hot = File.ReadAllLines("hotkey.txt");
+                modi = Convert.ToInt32(hot[0]);
+                key = Convert.ToInt32(hot[1]);
+                RegisterHotKey(this.Handle, 0, modi, key);
+            }
+            else
+            {
+                RegisterHotKey(this.Handle, 0, (int)KeyModifier.Shift, Keys.F.GetHashCode());
+            }
+
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
@@ -105,7 +130,7 @@ namespace TuDien
         }
         private void xoáToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc là muốn thoát không?", "Nhật - Việt | Dictionary", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc là muốn thoát không?", "IT Dictionary", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -127,8 +152,8 @@ namespace TuDien
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-            int id = 0; 
-            RegisterHotKey(this.Handle, id, (int)KeyModifier.Shift, Keys.F.GetHashCode());
+            int id = 0;
+            resetHotKey();
         }
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -138,7 +163,7 @@ namespace TuDien
         private void Main_Load(object sender, EventArgs e)
         {
             int id = 0;
-            RegisterHotKey(this.Handle, id, (int)KeyModifier.Shift, Keys.F.GetHashCode());
+            resetHotKey();
             ctrl.SubscribeGlobal();
         }
 
@@ -173,9 +198,9 @@ namespace TuDien
                             noti.Show();
                         }
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        MessageBox.Show("Kết nối thất bại");
+                        MessageBox.Show("Kết nối thất bại" + e.Message);
                     }
                     conn.Close();
                 }
@@ -197,6 +222,7 @@ namespace TuDien
         {
             Setting s = new Setting();
             s.Button_Clicked += new EventHandler(btnReset_Click);
+            s.Button2_Clicked += new EventHandler(btnResetHotKeys_Click);
             s.Show();
         }
 
@@ -204,12 +230,18 @@ namespace TuDien
         {
             Setting s = new Setting();
             s.Button_Clicked += new EventHandler(btnReset_Click);
+            s.Button2_Clicked += new EventHandler(btnResetHotKeys_Click);
             s.Show();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
             resetConnection();
+        }
+
+        private void btnResetHotKeys_Click(object sender, EventArgs e)
+        {
+            resetHotKey();
         }
     }
 }
