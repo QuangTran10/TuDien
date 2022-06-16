@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace TuDien
         public static string find(int keycode)
         {
             string name="";
-            foreach(var item in List)
+            foreach (var item in List)
             {
                 if (keycode == item.KeyCode)
                 {
@@ -39,6 +40,21 @@ namespace TuDien
                 }  
             }
             return name;
+        }
+
+        public static int findCode(string name)
+        {
+            int keycode=0;
+            name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
+            foreach (var item in List)
+            {
+                if (item.Name.Equals(name))
+                {
+                    keycode = item.KeyCode;
+                }
+            }
+
+            return keycode;
         }
 
         public int KeyCode { get; }

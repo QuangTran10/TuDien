@@ -54,7 +54,14 @@ namespace TuDien
             {
                 Clipboard.Clear();
                 SendKeys.SendWait("^c");
-                txtResult.Text = Clipboard.GetText();
+                if (Clipboard.GetText().Equals(""))
+                {
+                    return;
+                }
+                else
+                {
+                    txtResult.Text = Clipboard.GetText();
+                }
 
                 Clipboard.Clear();
             }

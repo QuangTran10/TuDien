@@ -57,7 +57,7 @@
             // 
             this.btnFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(219)))), ((int)(((byte)(227)))));
             this.btnFind.Image = global::TuDien.Properties.Resources.search;
-            this.btnFind.Location = new System.Drawing.Point(594, 164);
+            this.btnFind.Location = new System.Drawing.Point(594, 167);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(77, 36);
             this.btnFind.TabIndex = 4;
@@ -144,7 +144,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(62, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 30);
+            this.label1.Size = new System.Drawing.Size(118, 30);
             this.label1.TabIndex = 2;
             this.label1.Text = "IT Dictionary";
             // 
@@ -202,6 +202,7 @@
             this.btnResetHotKeys.TabIndex = 6;
             this.btnResetHotKeys.Text = "button1";
             this.btnResetHotKeys.UseVisualStyleBackColor = true;
+            this.btnResetHotKeys.Visible = false;
             this.btnResetHotKeys.Click += new System.EventHandler(this.btnResetHotKeys_Click);
             // 
             // btnReset
@@ -234,10 +235,10 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtSearch.Location = new System.Drawing.Point(183, 168);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(405, 27);
+            this.txtSearch.Size = new System.Drawing.Size(405, 33);
             this.txtSearch.TabIndex = 0;
             // 
             // Main

@@ -49,15 +49,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
             this.lblNotice = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbKeys = new System.Windows.Forms.ComboBox();
-            this.rdAlt = new System.Windows.Forms.RadioButton();
+            this.txtKey = new System.Windows.Forms.TextBox();
+            this.ckAlt = new System.Windows.Forms.CheckBox();
+            this.ckShift = new System.Windows.Forms.CheckBox();
+            this.ckCtrl = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.rdShift = new System.Windows.Forms.RadioButton();
-            this.rdCtrl = new System.Windows.Forms.RadioButton();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -97,7 +97,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(72, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(354, 30);
+            this.label1.Size = new System.Drawing.Size(158, 30);
             this.label1.TabIndex = 3;
             this.label1.Text = "Cấu Hình Database";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -297,6 +297,16 @@
             this.tabPage2.Text = "Phím tắt";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(188, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(168, 31);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Phím tắt hiện tại:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lblNotice
             // 
             this.lblNotice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -322,11 +332,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cmbKeys);
-            this.groupBox1.Controls.Add(this.rdAlt);
+            this.groupBox1.Controls.Add(this.txtKey);
+            this.groupBox1.Controls.Add(this.ckAlt);
+            this.groupBox1.Controls.Add(this.ckShift);
+            this.groupBox1.Controls.Add(this.ckCtrl);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.rdShift);
-            this.groupBox1.Controls.Add(this.rdCtrl);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(114, 62);
@@ -336,25 +346,43 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modifiers";
             // 
-            // cmbKeys
+            // txtKey
             // 
-            this.cmbKeys.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbKeys.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cmbKeys.FormattingEnabled = true;
-            this.cmbKeys.Location = new System.Drawing.Point(95, 116);
-            this.cmbKeys.Name = "cmbKeys";
-            this.cmbKeys.Size = new System.Drawing.Size(307, 29);
-            this.cmbKeys.TabIndex = 2;
+            this.txtKey.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtKey.Location = new System.Drawing.Point(126, 119);
+            this.txtKey.Name = "txtKey";
+            this.txtKey.Size = new System.Drawing.Size(281, 29);
+            this.txtKey.TabIndex = 5;
             // 
-            // rdAlt
+            // ckAlt
             // 
-            this.rdAlt.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rdAlt.Location = new System.Drawing.Point(328, 32);
-            this.rdAlt.Name = "rdAlt";
-            this.rdAlt.Size = new System.Drawing.Size(127, 28);
-            this.rdAlt.TabIndex = 2;
-            this.rdAlt.Text = "Alt";
-            this.rdAlt.UseVisualStyleBackColor = true;
+            this.ckAlt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ckAlt.Location = new System.Drawing.Point(362, 37);
+            this.ckAlt.Name = "ckAlt";
+            this.ckAlt.Size = new System.Drawing.Size(84, 35);
+            this.ckAlt.TabIndex = 4;
+            this.ckAlt.Text = "Alt";
+            this.ckAlt.UseVisualStyleBackColor = true;
+            // 
+            // ckShift
+            // 
+            this.ckShift.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ckShift.Location = new System.Drawing.Point(195, 37);
+            this.ckShift.Name = "ckShift";
+            this.ckShift.Size = new System.Drawing.Size(100, 35);
+            this.ckShift.TabIndex = 3;
+            this.ckShift.Text = "Shift";
+            this.ckShift.UseVisualStyleBackColor = true;
+            // 
+            // ckCtrl
+            // 
+            this.ckCtrl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ckCtrl.Location = new System.Drawing.Point(35, 37);
+            this.ckCtrl.Name = "ckCtrl";
+            this.ckCtrl.Size = new System.Drawing.Size(100, 35);
+            this.ckCtrl.TabIndex = 2;
+            this.ckCtrl.Text = "Ctrl";
+            this.ckCtrl.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -365,38 +393,6 @@
             this.label7.Size = new System.Drawing.Size(42, 21);
             this.label7.TabIndex = 1;
             this.label7.Text = "Keys";
-            // 
-            // rdShift
-            // 
-            this.rdShift.Checked = true;
-            this.rdShift.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rdShift.Location = new System.Drawing.Point(177, 32);
-            this.rdShift.Name = "rdShift";
-            this.rdShift.Size = new System.Drawing.Size(127, 28);
-            this.rdShift.TabIndex = 1;
-            this.rdShift.TabStop = true;
-            this.rdShift.Text = "Shift";
-            this.rdShift.UseVisualStyleBackColor = true;
-            // 
-            // rdCtrl
-            // 
-            this.rdCtrl.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rdCtrl.Location = new System.Drawing.Point(35, 32);
-            this.rdCtrl.Name = "rdCtrl";
-            this.rdCtrl.Size = new System.Drawing.Size(127, 28);
-            this.rdCtrl.TabIndex = 0;
-            this.rdCtrl.Text = "Ctrl";
-            this.rdCtrl.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(188, 28);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(168, 31);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Phím tắt hiện tại:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Setting
             // 
@@ -444,13 +440,13 @@
         private TabPage tabPage2;
         private TextBox txtIP;
         private GroupBox groupBox1;
-        private RadioButton rdCtrl;
-        private RadioButton rdAlt;
-        private RadioButton rdShift;
-        private ComboBox cmbKeys;
         private Label label7;
         private Button btnAdd;
         private Label lblNotice;
         private Label label8;
+        private CheckBox ckAlt;
+        private CheckBox ckShift;
+        private CheckBox ckCtrl;
+        private TextBox txtKey;
     }
 }

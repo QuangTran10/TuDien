@@ -147,7 +147,11 @@ namespace TuDien
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            UnregisterHotKey(this.Handle, 0);
+            if (MessageBox.Show("Bạn có chắc là muốn thoát không?", "IT Dictionary", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
         private void btnMinimize_Click(object sender, EventArgs e)
         {
@@ -162,7 +166,6 @@ namespace TuDien
         }
         private void Main_Load(object sender, EventArgs e)
         {
-            int id = 0;
             resetHotKey();
             ctrl.SubscribeGlobal();
         }
@@ -198,9 +201,9 @@ namespace TuDien
                             noti.Show();
                         }
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
-                        MessageBox.Show("Kết nối thất bại" + e.Message);
+                        MessageBox.Show("Kết nối thất bại");
                     }
                     conn.Close();
                 }
