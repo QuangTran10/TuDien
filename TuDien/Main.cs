@@ -97,10 +97,12 @@ namespace TuDien
                     Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "","");
                     re.Add(a);
                     Notification noti = new Notification(re, content);
+                    noti.TopMost = true;
                     noti.Show();
                 }
                 else{
                     Notification noti = new Notification(re, content);
+                    noti.TopMost = true;
                     noti.Show();
                 }
             }
@@ -199,11 +201,13 @@ namespace TuDien
                             Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "", "");
                             re.Add(a);
                             Notification noti = new Notification(re, keyword);
+                            noti.TopMost = true;
                             noti.Show();
                         }
                         else
                         {
                             Notification noti = new Notification(re, keyword);
+                            noti.TopMost = true;
                             noti.Show();
                         }
                     }
