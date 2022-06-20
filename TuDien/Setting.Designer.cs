@@ -180,7 +180,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.Transparent;
             this.btnSave.Image = global::TuDien.Properties.Resources.save_black;
-            this.btnSave.Location = new System.Drawing.Point(321, 289);
+            this.btnSave.Location = new System.Drawing.Point(288, 289);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 51);
             this.btnSave.TabIndex = 11;
@@ -300,7 +300,7 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(188, 28);
+            this.label8.Location = new System.Drawing.Point(171, 28);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(168, 31);
             this.label8.TabIndex = 14;
@@ -310,9 +310,9 @@
             // lblNotice
             // 
             this.lblNotice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblNotice.Location = new System.Drawing.Point(362, 28);
+            this.lblNotice.Location = new System.Drawing.Point(345, 28);
             this.lblNotice.Name = "lblNotice";
-            this.lblNotice.Size = new System.Drawing.Size(117, 31);
+            this.lblNotice.Size = new System.Drawing.Size(235, 31);
             this.lblNotice.TabIndex = 13;
             this.lblNotice.Text = " Shift + F";
             this.lblNotice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

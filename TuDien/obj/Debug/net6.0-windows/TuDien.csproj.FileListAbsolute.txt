@@ -20,7 +20,6 @@ D:\TuDien\TuDien\obj\Debug\net6.0-windows\TuDien.Properties.Resources.resources
 D:\TuDien\TuDien\obj\Debug\net6.0-windows\TuDien.Main.resources
 D:\TuDien\TuDien\bin\Debug\net6.0-windows\Gma.System.MouseKeyHook.dll
 D:\TuDien\TuDien\obj\Debug\net6.0-windows\TuDien.Notification.resources
-D:\TuDien\TuDien\obj\Debug\net6.0-windows\TuDien.Message.resources
 D:\TuDien\TuDien\obj\Debug\net6.0-windows\TuDien.ListItem.resources
 D:\TuDien\TuDien\bin\Debug\net6.0-windows\Guna.UI2.dll
 D:\TuDien\TuDien\obj\Debug\net6.0-windows\TuDien.UserManual.resources

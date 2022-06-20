@@ -217,7 +217,7 @@ namespace TuDien
                 }
                 else
                 {
-                    key = KeyItem.findCode(txtKey.Text);
+                    key = KeyItem.findCode(txtKey.Text.Trim());
                 }
 
                 string noidung = modifier + "\r\n" + key + "\r\n";

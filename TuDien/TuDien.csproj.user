@@ -7,9 +7,6 @@
     <Compile Update="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Message.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Notification.cs">
       <SubType>Form</SubType>
     </Compile>

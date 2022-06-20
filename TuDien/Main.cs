@@ -83,7 +83,9 @@ namespace TuDien
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
-            string content = txtSearch.Text;
+            string content = txtSearch.Text.Trim();
+            if (content.Equals(""))
+                return;
             ArrayList re = new ArrayList();
             try
             {
@@ -92,8 +94,10 @@ namespace TuDien
             
                 if(re.Count == 0)
                 {
-                    Message mess = new Message("Không tìm thấy kết quả");
-                    mess.Show();
+                    Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "","");
+                    re.Add(a);
+                    Notification noti = new Notification(re, content);
+                    noti.Show();
                 }
                 else{
                     Notification noti = new Notification(re, content);
@@ -192,8 +196,10 @@ namespace TuDien
 
                         if (re.Count == 0)
                         {
-                            Message mess = new Message("Không tìm thấy kết quả");
-                            mess.Show();
+                            Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "", "");
+                            re.Add(a);
+                            Notification noti = new Notification(re, keyword);
+                            noti.Show();
                         }
                         else
                         {

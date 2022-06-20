@@ -46,28 +46,38 @@ namespace TuDien
             string replacekey = "<mark>" + keywords + "</mark>";
             foreach (Dictionary item in dic)
             {
-
+                string japanese_trans="", japan_hiragana = "", vietnamese = "", english = "", example = "";
                 listItems[i] = new ListItem();
-
-                string japanese_trans = convert(item.Tm_japanese_translate);
-                string japan_hiragana = convert(item.Tm_japanese_hiragana);
-                string vietnamese = convert(item.Tm_vietnamese_tranlate);
-                string english = convert(item.Tm_english_tranlate);
-                string example = convert(item.Tm_example);
-
-                japanese_trans = japanese_trans.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
-                japan_hiragana = japan_hiragana.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
-                vietnamese = vietnamese.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
-                english = english.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
-                if(example == "" )
+                if (item.Tm_id != 0)
                 {
-                    example = "";
+                    japanese_trans = convert(item.Tm_japanese_translate);
+                    japan_hiragana = convert(item.Tm_japanese_hiragana);
+                    vietnamese = convert(item.Tm_vietnamese_tranlate);
+                    english = convert(item.Tm_english_tranlate);
+                    example = convert(item.Tm_example);
+
+                    japanese_trans = japanese_trans.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+                    japan_hiragana = japan_hiragana.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+                    vietnamese = vietnamese.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+                    english = english.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase);
+                    if (example == "")
+                    {
+                        example = "";
+                    }
+                    else
+                    {
+                        example = "<br><b>Ví dụ:</b><br>" + example.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase).Replace("\n", "<br>");
+                    }
                 }
                 else
                 {
-                    example = "<br><b>Ví dụ:</b><br>" + example.Replace(keywords, replacekey, StringComparison.OrdinalIgnoreCase).Replace("\n","<br>");
+                    japanese_trans = item.Tm_japanese_translate;
+                    japan_hiragana = item.Tm_japanese_hiragana;
+                    vietnamese = item.Tm_vietnamese_tranlate;
+                    english = item.Tm_english_tranlate;
+                    example = item.Tm_example;
                 }
-
+                
 
                 listItems[i].Content = "<html>" +
                 "<style> mark{background-color:#CE96F8;} p{padding : 0;margin: 0;line-height:20px;font-size:12px;text-align:justify }</style>" +
@@ -101,11 +111,6 @@ namespace TuDien
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void Notification_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
