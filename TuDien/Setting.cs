@@ -1,9 +1,11 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Gma.System.MouseKeyHook;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -26,16 +28,6 @@ namespace TuDien
         public event EventHandler Button_Clicked;
 
         public event EventHandler Button2_Clicked;
-
-        public Setting()
-        {
-            InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.Padding = new Padding(borderSize);
-            this.panel2.BackColor = borderColor;
-            this.BackColor = borderColor;
-        }
-
         private void check(int keycode)
         {
             switch (keycode)
@@ -107,6 +99,14 @@ namespace TuDien
 
             return result;
         }
+        public Setting()
+        {
+            InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.Padding = new Padding(borderSize);
+            this.panel2.BackColor = borderColor;
+            this.BackColor = borderColor;
+        }
 
         private void panel2_MouseDown(object sender, MouseEventArgs e)
         {
@@ -152,16 +152,14 @@ namespace TuDien
                 check(modi);
 
                 this.txtKey.Text = KeyItem.find(Convert.ToInt32(b[1]));
-                string shortcut = printcheck(modi) + " + " + KeyItem.find(Convert.ToInt32(b[1]));
-                lblNotice.Text = shortcut;
             }
             else
             {
-                string noidung = 4 + "\r\n" + 70 + "\r\n" + 66;
+                string noidung = 4 + "\r\n" + 70 ;
 
                 File.WriteAllText("hotkey.txt", noidung);
-            } 
-            
+            }
+
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -193,7 +191,7 @@ namespace TuDien
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int modifier = 0; 
+            int modifier = 0;
             if (ckCtrl.Checked)
             {
                 modifier += 2;
@@ -207,7 +205,7 @@ namespace TuDien
                 modifier += 1;
             }
 
-            if(modifier != 0)
+            if (modifier != 0)
             {
                 int key;
 
@@ -229,10 +227,11 @@ namespace TuDien
                 if (this.Button2_Clicked != null)
                     this.Button2_Clicked(sender, e);
             }
-            else{
+            else
+            {
                 MessageBox.Show("Chưa chọn modifiers");
                 return;
             }
-        }
+        }    
     }
 }

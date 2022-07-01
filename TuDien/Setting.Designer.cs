@@ -49,15 +49,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblNotice = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtKey = new System.Windows.Forms.TextBox();
             this.ckAlt = new System.Windows.Forms.CheckBox();
-            this.ckShift = new System.Windows.Forms.CheckBox();
             this.ckCtrl = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.ckShift = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -285,8 +282,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.lblNotice);
             this.tabPage2.Controls.Add(this.btnAdd);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
@@ -297,33 +292,13 @@
             this.tabPage2.Text = "Phím tắt";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(171, 28);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(168, 31);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Phím tắt hiện tại:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblNotice
-            // 
-            this.lblNotice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblNotice.Location = new System.Drawing.Point(345, 28);
-            this.lblNotice.Name = "lblNotice";
-            this.lblNotice.Size = new System.Drawing.Size(235, 31);
-            this.lblNotice.TabIndex = 13;
-            this.lblNotice.Text = " Shift + F";
-            this.lblNotice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(177)))), ((int)(((byte)(255)))));
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.Color.Transparent;
             this.btnAdd.Image = global::TuDien.Properties.Resources.save_black;
-            this.btnAdd.Location = new System.Drawing.Point(293, 263);
+            this.btnAdd.Location = new System.Drawing.Point(304, 261);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(101, 51);
             this.btnAdd.TabIndex = 12;
@@ -332,16 +307,15 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtKey);
-            this.groupBox1.Controls.Add(this.ckAlt);
             this.groupBox1.Controls.Add(this.ckShift);
             this.groupBox1.Controls.Add(this.ckCtrl);
-            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.ckAlt);
+            this.groupBox1.Controls.Add(this.txtKey);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(114, 62);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(466, 182);
+            this.groupBox1.Size = new System.Drawing.Size(466, 160);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modifiers";
@@ -349,50 +323,40 @@
             // txtKey
             // 
             this.txtKey.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtKey.Location = new System.Drawing.Point(126, 119);
+            this.txtKey.Location = new System.Drawing.Point(29, 106);
             this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(281, 29);
+            this.txtKey.Size = new System.Drawing.Size(419, 29);
             this.txtKey.TabIndex = 5;
             // 
             // ckAlt
             // 
-            this.ckAlt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ckAlt.Location = new System.Drawing.Point(362, 37);
+            this.ckAlt.AutoSize = true;
+            this.ckAlt.Location = new System.Drawing.Point(29, 43);
             this.ckAlt.Name = "ckAlt";
-            this.ckAlt.Size = new System.Drawing.Size(84, 35);
-            this.ckAlt.TabIndex = 4;
+            this.ckAlt.Size = new System.Drawing.Size(42, 21);
+            this.ckAlt.TabIndex = 6;
             this.ckAlt.Text = "Alt";
             this.ckAlt.UseVisualStyleBackColor = true;
             // 
-            // ckShift
-            // 
-            this.ckShift.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ckShift.Location = new System.Drawing.Point(195, 37);
-            this.ckShift.Name = "ckShift";
-            this.ckShift.Size = new System.Drawing.Size(100, 35);
-            this.ckShift.TabIndex = 3;
-            this.ckShift.Text = "Shift";
-            this.ckShift.UseVisualStyleBackColor = true;
-            // 
             // ckCtrl
             // 
-            this.ckCtrl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ckCtrl.Location = new System.Drawing.Point(35, 37);
+            this.ckCtrl.AutoSize = true;
+            this.ckCtrl.Location = new System.Drawing.Point(190, 43);
             this.ckCtrl.Name = "ckCtrl";
-            this.ckCtrl.Size = new System.Drawing.Size(100, 35);
-            this.ckCtrl.TabIndex = 2;
+            this.ckCtrl.Size = new System.Drawing.Size(47, 21);
+            this.ckCtrl.TabIndex = 7;
             this.ckCtrl.Text = "Ctrl";
             this.ckCtrl.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // ckShift
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(35, 119);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 21);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Keys";
+            this.ckShift.AutoSize = true;
+            this.ckShift.Location = new System.Drawing.Point(361, 43);
+            this.ckShift.Name = "ckShift";
+            this.ckShift.Size = new System.Drawing.Size(52, 21);
+            this.ckShift.TabIndex = 8;
+            this.ckShift.Text = "Shift";
+            this.ckShift.UseVisualStyleBackColor = true;
             // 
             // Setting
             // 
@@ -440,13 +404,10 @@
         private TabPage tabPage2;
         private TextBox txtIP;
         private GroupBox groupBox1;
-        private Label label7;
         private Button btnAdd;
-        private Label lblNotice;
-        private Label label8;
-        private CheckBox ckAlt;
+        private TextBox txtKey;
         private CheckBox ckShift;
         private CheckBox ckCtrl;
-        private TextBox txtKey;
+        private CheckBox ckAlt;
     }
 }

@@ -68,7 +68,6 @@ namespace TuDien
             catch (Exception)
             {
 
-                //throw;
             }
         }
 

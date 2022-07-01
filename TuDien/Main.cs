@@ -3,6 +3,9 @@ using MySql.Data.MySqlClient;
 using System.Collections;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using System.Text;
+
+
 
 namespace TuDien
 {
@@ -18,6 +21,7 @@ namespace TuDien
         string data;
         ControlData ctrl;
 
+
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
@@ -26,6 +30,11 @@ namespace TuDien
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+        [DllImport("user32.dll")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr SetActiveWindow(IntPtr hWnd);
+
         enum KeyModifier
         {
             None = 0,
@@ -35,6 +44,9 @@ namespace TuDien
         }
         public Main()
         {
+            System.Diagnostics.Process myProcess = System.Diagnostics.Process.GetCurrentProcess();
+            myProcess.PriorityClass = System.Diagnostics.ProcessPriorityClass.High;
+
             InitializeComponent();
             this.WindowState = FormWindowState.Minimized;
             this.ShowInTaskbar = false;
@@ -45,9 +57,9 @@ namespace TuDien
             this.panel1.BackColor = borderColor;
             this.BackColor = borderColor;
 
-            if (File.Exists("hotkey.txt")==false)
+            if (File.Exists("hotkey.txt") == false)
             {
-                string noidung = 4 + "\r\n" + 70 + "\r\n" + 66;
+                string noidung = 4 + "\r\n" + 70 ;
 
                 File.WriteAllText("hotkey.txt", noidung);
             }
@@ -57,12 +69,18 @@ namespace TuDien
             conn = ConnectDB.Connect();
 
             ctrl = new ControlData(m_Events, data, txtSearch);
+
+            resetHotKey();
+
+            //SetForegroundWindow(this.Handle);
+            SetActiveWindow(this.Handle);
+
         }
+        
         public void resetConnection()
         {
             conn = ConnectDB.Connect();
         }
-
         public void resetHotKey()
         {
             UnregisterHotKey(this.Handle, 0);
@@ -79,8 +97,9 @@ namespace TuDien
             {
                 RegisterHotKey(this.Handle, 0, (int)KeyModifier.Shift, Keys.F.GetHashCode());
             }
-
         }
+        
+
         private void btnFind_Click(object sender, EventArgs e)
         {
             string content = txtSearch.Text.Trim();
@@ -91,16 +110,17 @@ namespace TuDien
             {
                 conn.Open();
                 re = manage.findWord(conn, content);
-            
-                if(re.Count == 0)
+
+                if (re.Count == 0)
                 {
-                    Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "","");
+                    Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "", "");
                     re.Add(a);
                     Notification noti = new Notification(re, content);
                     noti.TopMost = true;
                     noti.Show();
                 }
-                else{
+                else
+                {
                     Notification noti = new Notification(re, content);
                     noti.TopMost = true;
                     noti.Show();
@@ -112,12 +132,12 @@ namespace TuDien
             }
             conn.Close();
         }
-        
+
         private void Main_SizeChanged(object sender, EventArgs e)
         {
             bool MousePointerNotOnTaskbar = Screen.GetWorkingArea(this).Contains(Cursor.Position);
 
-            if(this.WindowState == FormWindowState.Minimized && MousePointerNotOnTaskbar)
+            if (this.WindowState == FormWindowState.Minimized && MousePointerNotOnTaskbar)
             {
                 notify.Icon = new Icon("logo.ico");
                 this.ShowInTaskbar = false;
@@ -136,6 +156,7 @@ namespace TuDien
         }
         private void xoáToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            UnregisterHotKey(this.Handle, 0);
             if (MessageBox.Show("Bạn có chắc là muốn thoát không?", "IT Dictionary", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
@@ -153,7 +174,6 @@ namespace TuDien
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
-            UnregisterHotKey(this.Handle, 0);
             if (MessageBox.Show("Bạn có chắc là muốn thoát không?", "IT Dictionary", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
@@ -170,59 +190,10 @@ namespace TuDien
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-        private void Main_Load(object sender, EventArgs e)
-        {
-            resetHotKey();
-            ctrl.SubscribeGlobal();
-        }
-
-        protected override void WndProc(ref System.Windows.Forms.Message m)
-        {
-            base.WndProc(ref m);
-
-            if (m.Msg == 0x0312)
-            {
-                Keys key = (Keys)(((int)m.LParam >> 16) & 0xFFFF);                  
-                KeyModifier modifier = (KeyModifier)((int)m.LParam & 0xFFFF);       
-                int id = m.WParam.ToInt32();
-                string keyword = txtSearch.Text.TrimEnd();
-                if (keyword.Equals(""))
-                    return;
-                if (id == 0)
-                {
-                    try
-                    {
-                        conn.Open();
-                        ArrayList re;
-                        re = manage.findWord(conn, keyword); 
-
-                        if (re.Count == 0)
-                        {
-                            Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "", "");
-                            re.Add(a);
-                            Notification noti = new Notification(re, keyword);
-                            noti.TopMost = true;
-                            noti.Show();
-                        }
-                        else
-                        {
-                            Notification noti = new Notification(re, keyword);
-                            noti.TopMost = true;
-                            noti.Show();
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Kết nối thất bại");
-                    }
-                    conn.Close();
-                }
-            }
-        }
-
+       
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            UnregisterHotKey(this.Handle, 0);
+
         }
 
         private void hướngDẫnSửDụngToolStripMenuItem_Click(object sender, EventArgs e)
@@ -252,9 +223,59 @@ namespace TuDien
             resetConnection();
         }
 
+        private void Main_Load(object sender, EventArgs e)
+        {
+            ctrl.SubscribeGlobal();
+            resetHotKey();
+        }
+
         private void btnResetHotKeys_Click(object sender, EventArgs e)
         {
             resetHotKey();
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0x0312)
+            {
+                Keys key = (Keys)(((int)m.LParam >> 16) & 0xFFFF);
+                KeyModifier modifier = (KeyModifier)((int)m.LParam & 0xFFFF);
+                int id = m.WParam.ToInt32();
+                string keyword = txtSearch.Text.TrimEnd();
+                if (keyword.Equals(""))
+                    return;
+                if (id == 0)
+                {
+                    try
+                    {
+                        conn.Open();
+                        ArrayList re;
+                        re = manage.findWord(conn, keyword);
+
+                        if (re.Count == 0)
+                        {
+                            Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "", "");
+                            re.Add(a);
+                            Notification noti = new Notification(re, keyword);
+                            noti.TopMost = true;
+                            noti.Show();
+                        }
+                        else
+                        {
+                            Notification noti = new Notification(re, keyword);
+                            noti.TopMost = true;
+                            noti.Show();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Kết nối thất bại");
+                    }
+                    conn.Close();
+                }
+            }
+
+            base.WndProc(ref m);
         }
     }
 }
