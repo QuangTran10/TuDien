@@ -18,20 +18,14 @@ namespace TuDien
         MySqlConnection conn;
 
         private IKeyboardMouseEvents m_Events;
+        private IKeyboardMouseEvents hotkey_Events;
         string data;
         ControlData ctrl;
-
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
-        [DllImport("user32.dll")]
-        public static extern bool SetForegroundWindow(IntPtr hWnd);
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr SetActiveWindow(IntPtr hWnd);
 
@@ -59,7 +53,7 @@ namespace TuDien
 
             if (File.Exists("hotkey.txt") == false)
             {
-                string noidung = 4 + "\r\n" + 70 ;
+                string noidung = "Shift+F";
 
                 File.WriteAllText("hotkey.txt", noidung);
             }
@@ -69,36 +63,69 @@ namespace TuDien
             conn = ConnectDB.Connect();
 
             ctrl = new ControlData(m_Events, data, txtSearch);
-
-            resetHotKey();
-
-            //SetForegroundWindow(this.Handle);
-            SetActiveWindow(this.Handle);
-
         }
-        
+
+
         public void resetConnection()
         {
             conn = ConnectDB.Connect();
         }
         public void resetHotKey()
         {
-            UnregisterHotKey(this.Handle, 0);
             string[] hot;
-            int modi, key;
+            string key;
+            this.hotkey_Events = Hook.GlobalEvents();
             if (File.Exists("hotkey.txt"))
             {
                 hot = File.ReadAllLines("hotkey.txt");
-                modi = Convert.ToInt32(hot[0]);
-                key = Convert.ToInt32(hot[1]);
-                RegisterHotKey(this.Handle, 0, modi, key);
+                key = hot[0];
             }
             else
             {
-                RegisterHotKey(this.Handle, 0, (int)KeyModifier.Shift, Keys.F.GetHashCode());
+                key = "Shift+F";
             }
+            var subhotkey = Combination.FromString(key);
+
+            Action action = SubcribeHotKey;
+
+            var assignment = new Dictionary<Combination, Action>
+            {
+                {subhotkey, action}
+            };
+
+            this.hotkey_Events.OnCombination(assignment);
         }
-        
+
+        private void SubcribeHotKey()
+        {
+            string keyword = Clipboard.GetText().Trim();
+            if (keyword.Equals(""))
+                return;
+            try
+            {
+                conn.Open();
+                ArrayList re;
+                re = manage.findWord(conn, keyword);
+
+                if (re.Count == 0)
+                {
+                    Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "", "");
+                    re.Add(a);
+                    Notification noti = new Notification(re, keyword);
+                    noti.Show();
+                }
+                else
+                {
+                    Notification noti = new Notification(re, keyword);
+                    noti.Show();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Kết nối thất bại");
+            }
+            conn.Close();
+        }
 
         private void btnFind_Click(object sender, EventArgs e)
         {
@@ -156,7 +183,6 @@ namespace TuDien
         }
         private void xoáToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UnregisterHotKey(this.Handle, 0);
             if (MessageBox.Show("Bạn có chắc là muốn thoát không?", "IT Dictionary", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
@@ -190,7 +216,7 @@ namespace TuDien
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-       
+
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
 
@@ -234,7 +260,7 @@ namespace TuDien
             resetHotKey();
         }
 
-        protected override void WndProc(ref Message m)
+        /*protected override void WndProc(ref Message m)
         {
             if (m.Msg == 0x0312)
             {
@@ -276,6 +302,6 @@ namespace TuDien
             }
 
             base.WndProc(ref m);
-        }
+        }*/
     }
 }

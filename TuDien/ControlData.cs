@@ -62,8 +62,7 @@ namespace TuDien
                 {
                     txtResult.Text = Clipboard.GetText();
                 }
-
-                Clipboard.Clear();
+                //Clipboard.Clear();
             }
             catch (Exception)
             {

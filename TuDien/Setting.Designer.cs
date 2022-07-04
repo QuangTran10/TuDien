@@ -52,9 +52,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtKey = new System.Windows.Forms.TextBox();
-            this.ckAlt = new System.Windows.Forms.CheckBox();
-            this.ckCtrl = new System.Windows.Forms.CheckBox();
-            this.ckShift = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -307,15 +304,12 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.ckShift);
-            this.groupBox1.Controls.Add(this.ckCtrl);
-            this.groupBox1.Controls.Add(this.ckAlt);
             this.groupBox1.Controls.Add(this.txtKey);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(114, 62);
+            this.groupBox1.Location = new System.Drawing.Point(108, 84);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(466, 160);
+            this.groupBox1.Size = new System.Drawing.Size(466, 108);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modifiers";
@@ -323,40 +317,10 @@
             // txtKey
             // 
             this.txtKey.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtKey.Location = new System.Drawing.Point(29, 106);
+            this.txtKey.Location = new System.Drawing.Point(28, 37);
             this.txtKey.Name = "txtKey";
             this.txtKey.Size = new System.Drawing.Size(419, 29);
             this.txtKey.TabIndex = 5;
-            // 
-            // ckAlt
-            // 
-            this.ckAlt.AutoSize = true;
-            this.ckAlt.Location = new System.Drawing.Point(29, 43);
-            this.ckAlt.Name = "ckAlt";
-            this.ckAlt.Size = new System.Drawing.Size(42, 21);
-            this.ckAlt.TabIndex = 6;
-            this.ckAlt.Text = "Alt";
-            this.ckAlt.UseVisualStyleBackColor = true;
-            // 
-            // ckCtrl
-            // 
-            this.ckCtrl.AutoSize = true;
-            this.ckCtrl.Location = new System.Drawing.Point(190, 43);
-            this.ckCtrl.Name = "ckCtrl";
-            this.ckCtrl.Size = new System.Drawing.Size(47, 21);
-            this.ckCtrl.TabIndex = 7;
-            this.ckCtrl.Text = "Ctrl";
-            this.ckCtrl.UseVisualStyleBackColor = true;
-            // 
-            // ckShift
-            // 
-            this.ckShift.AutoSize = true;
-            this.ckShift.Location = new System.Drawing.Point(361, 43);
-            this.ckShift.Name = "ckShift";
-            this.ckShift.Size = new System.Drawing.Size(52, 21);
-            this.ckShift.TabIndex = 8;
-            this.ckShift.Text = "Shift";
-            this.ckShift.UseVisualStyleBackColor = true;
             // 
             // Setting
             // 
@@ -406,8 +370,5 @@
         private GroupBox groupBox1;
         private Button btnAdd;
         private TextBox txtKey;
-        private CheckBox ckShift;
-        private CheckBox ckCtrl;
-        private CheckBox ckAlt;
     }
 }

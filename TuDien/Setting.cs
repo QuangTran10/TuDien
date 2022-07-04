@@ -28,77 +28,7 @@ namespace TuDien
         public event EventHandler Button_Clicked;
 
         public event EventHandler Button2_Clicked;
-        private void check(int keycode)
-        {
-            switch (keycode)
-            {
-                case 1:
-                    this.ckAlt.Checked = true;
-                    break;
-                case 2:
-                    this.ckCtrl.Checked = true;
-                    break;
-                case 3:
-                    this.ckAlt.Checked = true;
-                    this.ckCtrl.Checked = true;
-                    break;
-                case 4:
-                    this.ckShift.Checked = true;
-                    break;
-                case 5:
-                    this.ckAlt.Checked = true;
-                    this.ckShift.Checked = true;
-                    break;
-                case 6:
-                    this.ckCtrl.Checked = true;
-                    this.ckShift.Checked = true;
-                    break;
-                case 7:
-                    this.ckCtrl.Checked = true;
-                    this.ckShift.Checked = true;
-                    this.ckAlt.Checked = true;
-                    break;
-                default:
-                    this.ckCtrl.Checked = false;
-                    this.ckShift.Checked = false;
-                    this.ckAlt.Checked = false;
-                    break;
-            }
-        }
 
-        private string printcheck(int keycode)
-        {
-            string result = "";
-            switch (keycode)
-            {
-                case 1:
-                    result = "Alt";
-                    break;
-                case 2:
-                    result = "Ctrl";
-                    break;
-                case 3:
-                    result = "Alt + Ctrl";
-                    break;
-                case 4:
-                    result = "Shift";
-                    break;
-                case 5:
-                    result = "Alt + Shift";
-                    break;
-                case 6:
-                    result = "Ctrl + Shift";
-                    break;
-                case 7:
-                    result = "Ctrl + Shift + Alt";
-                    break;
-                default:
-                    result = "";
-                    break;
-            }
-
-            return result;
-        }
         public Setting()
         {
             InitializeComponent();
@@ -148,14 +78,12 @@ namespace TuDien
             if (File.Exists("hotkey.txt"))
             {
                 string[] b = File.ReadAllLines("hotkey.txt");
-                int modi = Convert.ToInt32(b[0]);
-                check(modi);
 
-                this.txtKey.Text = KeyItem.find(Convert.ToInt32(b[1]));
+                this.txtKey.Text = b[0];
             }
             else
             {
-                string noidung = 4 + "\r\n" + 70 ;
+                string noidung = "Shift+F";
 
                 File.WriteAllText("hotkey.txt", noidung);
             }
@@ -170,7 +98,7 @@ namespace TuDien
             string database = txtDatabase.Text;
 
             string noidung = ip + "\r\n" + port + "\r\n" + user + "\r\n" + pass + "\r\n" + database;
-            
+
             File.WriteAllText("dic.txt", noidung);
             resetText();
             if (this.Button_Clicked != null)
@@ -191,47 +119,27 @@ namespace TuDien
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int modifier = 0;
-            if (ckCtrl.Checked)
+            string key;
+
+            if (txtKey.Text.Equals(""))
             {
-                modifier += 2;
-            }
-            if (ckShift.Checked)
-            {
-                modifier += 4;
-            }
-            if (ckAlt.Checked)
-            {
-                modifier += 1;
-            }
-
-            if (modifier != 0)
-            {
-                int key;
-
-                if (txtKey.Text.Equals(""))
-                {
-                    key = Keys.F.GetHashCode();
-                }
-                else
-                {
-                    key = KeyItem.findCode(txtKey.Text.Trim());
-                }
-
-                string noidung = modifier + "\r\n" + key + "\r\n";
-
-                File.WriteAllText("hotkey.txt", noidung);
-                loadHotKey();
-                MessageBox.Show("Cập nhật thành công");
-
-                if (this.Button2_Clicked != null)
-                    this.Button2_Clicked(sender, e);
+                key = "Shift+F";
             }
             else
             {
-                MessageBox.Show("Chưa chọn modifiers");
-                return;
+                key = txtKey.Text.Trim();
+                key = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(key.ToLower());
             }
-        }    
+
+            string noidung = key;
+
+            File.WriteAllText("hotkey.txt", noidung);
+            loadHotKey();
+            MessageBox.Show("Cập nhật thành công");
+
+            if (this.Button2_Clicked != null)
+                this.Button2_Clicked(sender, e);
+
+        }
     }
 }
