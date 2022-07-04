@@ -63,6 +63,8 @@ namespace TuDien
             conn = ConnectDB.Connect();
 
             ctrl = new ControlData(m_Events, data, txtSearch);
+
+            ctrl.SubscribeGlobal();
         }
 
 
@@ -94,6 +96,7 @@ namespace TuDien
             };
 
             this.hotkey_Events.OnCombination(assignment);
+            
         }
 
         private void SubcribeHotKey()
@@ -112,11 +115,13 @@ namespace TuDien
                     Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "", "");
                     re.Add(a);
                     Notification noti = new Notification(re, keyword);
+                    Thread.Sleep(1000);
                     noti.Show();
                 }
                 else
                 {
                     Notification noti = new Notification(re, keyword);
+                    Thread.Sleep(1000);
                     noti.Show();
                 }
             }
@@ -259,49 +264,5 @@ namespace TuDien
         {
             resetHotKey();
         }
-
-        /*protected override void WndProc(ref Message m)
-        {
-            if (m.Msg == 0x0312)
-            {
-                Keys key = (Keys)(((int)m.LParam >> 16) & 0xFFFF);
-                KeyModifier modifier = (KeyModifier)((int)m.LParam & 0xFFFF);
-                int id = m.WParam.ToInt32();
-                string keyword = txtSearch.Text.TrimEnd();
-                if (keyword.Equals(""))
-                    return;
-                if (id == 0)
-                {
-                    try
-                    {
-                        conn.Open();
-                        ArrayList re;
-                        re = manage.findWord(conn, keyword);
-
-                        if (re.Count == 0)
-                        {
-                            Dictionary a = new Dictionary(0, "Không tìm thấy kết quả", "", "", "", "");
-                            re.Add(a);
-                            Notification noti = new Notification(re, keyword);
-                            noti.TopMost = true;
-                            noti.Show();
-                        }
-                        else
-                        {
-                            Notification noti = new Notification(re, keyword);
-                            noti.TopMost = true;
-                            noti.Show();
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Kết nối thất bại");
-                    }
-                    conn.Close();
-                }
-            }
-
-            base.WndProc(ref m);
-        }*/
     }
 }
